@@ -1,6 +1,6 @@
 # git-stache
 
-Back up your GitHub repositories locally — clone or pull with a single script.
+Clone all of your your GitHub repositories locally with a single script.
 
 ## Requirements
 
