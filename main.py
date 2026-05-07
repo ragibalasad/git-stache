@@ -112,7 +112,7 @@ if not token:
 
 base_dir = get_config()
 repos = get_repos(token)
-print(f"{GREEN}󰊤 Found {BOLD}{len(repos)}{RESET}{GREEN} repositories. Starting sync...{RESET}\n")
+print(f"{GREEN}  Found {BOLD}{len(repos)}{RESET}{GREEN} repositories. Starting sync...{RESET}\n")
 sync_repos(token, repos, base_dir)
 print(f"\n{GREEN}{BOLD}✔ Sync complete!{RESET}")
 
