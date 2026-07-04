@@ -1,44 +1,35 @@
 # git-stache
 
-Clone all of your your GitHub repositories locally with a single script.
+Syncs all your GitHub repos (public + private) to a local folder. Clones new
+repos, pulls existing ones.
 
 ## Requirements
 
-- Python 3.x
-- Git
-- A GitHub Personal Access Token with `repo` scope — [create one here](https://github.com/settings/tokens)
+- A GitHub PAT needs to be already stored in git's credential helper. If you haven't done
+  this yet:
 
-## Setup
+  ```bash
+  git config --global credential.helper store
+  git clone https://github.com/<your-username>/<any-private-repo>.git
+  # enter username and PAT when prompted
+  ```
 
-```bash
-git clone https://github.com/ragibalasad/git-stache.git
-cd git-stache
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Copy `.env.example` to `.env` and add your token:
-
-```text
-GITHUB_TOKEN=your_personal_access_token_here
-```
-
-## Usage
+## Run without cloning this repo
 
 ```bash
-python3 main.py
+curl -fsSL https://raw.githubusercontent.com/ragibalasad/git-stache/main/gitstache.sh | bash
 ```
 
-First run will ask where to store your repos. That choice is saved to `config.json` and reused on every subsequent run.
+Or download it first if you want to read it before running:
 
-## How it works
+```bash
+curl -fsSL https://raw.githubusercontent.com/ragibalasad/git-stache/main/gitstache.sh -o gitstache.sh
+chmod +x github-sync.sh
+./gitstache.sh
+```
 
-- Fetches all repos you have access to via the GitHub API
-- Clones repos that don't exist locally
-- Pulls (rebase) repos that do
-- Organizes everything as `<destination>/<owner>/<repo>`
+## Notes
 
-## License
-
-MIT
+- Uses `git pull --ff-only` — won't create merge commits, fails on diverged branches instead.
+- Token isn't written to disk or put in any URL.
+- Override storage path for one run: `GH_SYNC_BASE_DIR=/path ./github-sync.sh`
