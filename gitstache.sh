@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# github-sync.sh
+# gitstache.sh
 #
 # Pulls your stored GitHub PAT from git's credential helper, discovers your
 # authenticated username, lists ALL your repos (public + private), and
@@ -18,7 +18,7 @@ GITHUB_API="https://api.github.com"
 GITHUB_HOST="github.com"
 
 # XDG Base Directory spec: config belongs under $XDG_CONFIG_HOME (default ~/.config)
-CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/github-sync"
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitstache"
 CONFIG_FILE="$CONFIG_DIR/config"
 
 # ------------------------------------------------------------------------
@@ -89,7 +89,7 @@ resolve_base_dir() {
 
   mkdir -p "$CONFIG_DIR"
   {
-    echo "# github-sync config — generated $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "# gitstache config — generated $(date '+%Y-%m-%d %H:%M:%S')"
     echo "# Delete this file (or edit BASE_DIR below) to change the storage location."
     echo "BASE_DIR=\"$BASE_DIR\""
   } > "$CONFIG_FILE"
